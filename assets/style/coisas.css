@@ -1,0 +1,38 @@
+#mainIndex{
+    padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+    
+
+}
+
+
+
+#sectionInd {
+  margin-bottom: 2rem;
+}
+
+#ulInd {
+  list-style: none;
+  padding: 0;
+}
+
+#ulInd #liInd {
+  margin: 0.5rem 0;
+}
+
+#buttonInd {
+  background-color: #0055aa;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#buttonInd:hover {
+  background-color: #003d7a;
+}
