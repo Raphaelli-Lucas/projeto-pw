@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados das Partidas</title>
+  <link rel="stylesheet" href="assets/style/base.css">
+  <script src="assets/script/resultado.js" async></script>
+</head>
+<body>
+  <header>
+    <h1>🏆 Campeonato Escolar</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="equipes.html">Equipes</a>
+      <a href="alunos.html">Alunos</a>
+      <a href="partidas.html">Partidas</a>
+      <a href="ranking.html">Ranking</a>
+      <a href="resultado.html">Resultado</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>🏁 Registrar Resultados</h2>
+    <table>
+      <thead>
+  <tr>
+    <th>Data - </th>
+    <th>Local - </th>
+    <th>Equipe A - </th>
+    <th>Gols A - </th>
+    <th>Equipe B - </th>
+    <th>Gols B - </th>
+    <th>Resultado - </th>
+    <th>Pontos - </th>
+    <th>Ações - </th>
+  </tr>
+</thead>
+      <tbody id="listaResultados"></tbody>
+    </table>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 - Sistema Web Escolar</p>
+  </footer>
+  <!-- Modal de Resultado -->
+<div id="modalResultado" class="modal hidden">
+  <div class="modal-content">
+    <h3>Registrar Resultado</h3>
+    <p id="infoPartida"></p>
+
+    <label>
+      Vencedor:
+      <select id="vencedorSelect">
+        <option value="">-- Selecione --</option>
+      </select>
+    </label>
+
+    <label>
+      - Pontos Equipe A:
+      <input type="number" id="pontosA" min="0" />
+    </label>
+
+    <label>
+      - Pontos Equipe B:
+      <input type="number" id="pontosB" min="0" />
+    </label>
+
+    <p id="MensagemErro"></p>
+
+    <div class="modal-buttons">
+      <button onclick="salvarResultado()">Salvar</button>
+      <button onclick="fecharModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
