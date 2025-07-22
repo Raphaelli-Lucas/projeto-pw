@@ -11,7 +11,7 @@ function carregarEquipes() {
     equipes.forEach((equipe) => {
       const option = document.createElement("option");
       option.value = equipe.nome;
-      option.textContent = equipe.nome;
+      option.innerText = equipe.nome;
       select.appendChild(option);
     });
   });

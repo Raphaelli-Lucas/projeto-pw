@@ -1,69 +1,90 @@
 function gerarRanking() {
   const partidas = JSON.parse(localStorage.getItem("partidas") || "[]");
   const estatisticas = {};
+  let ordemGlobal = 0; // usado para rastrear a ordem de entrada das equipes
 
-  partidas.forEach((p) => {
-    if (p.pontosA == null || p.pontosB == null) return; // pula se não tiver resultado
+  partidas.forEach((partida) => {
+    if (partida.pontosA == null || partida.pontosB == null) return;
 
-    if (!estatisticas[p.equipeA]) {
-      estatisticas[p.equipeA] = {
-        nome: p.equipeA,
-        pts: 0,
-        j: 0,
-        v: 0,
-        e: 0,
-        d: 0,
+    // Inicializa estatísticas da equipe A se ainda não existir
+    if (!estatisticas[partida.equipeA]) {
+      estatisticas[partida.equipeA] = {
+        nome: partida.equipeA,
+        pontos: 0,
+        jogos: 0,
+        vitorias: 0,
+        empates: 0,
+        derrotas: 0,
+        ordemDeEntrada: ordemGlobal++,
       };
     }
 
-    if (!estatisticas[p.equipeB]) {
-      estatisticas[p.equipeB] = {
-        nome: p.equipeB,
-        pts: 0,
-        j: 0,
-        v: 0,
-        e: 0,
-        d: 0,
+    // Inicializa estatísticas da equipe B se ainda não existir
+    if (!estatisticas[partida.equipeB]) {
+      estatisticas[partida.equipeB] = {
+        nome: partida.equipeB,
+        pontos: 0,
+        jogos: 0,
+        vitorias: 0,
+        empates: 0,
+        derrotas: 0,
+        ordemDeEntrada: ordemGlobal++,
       };
     }
 
-    estatisticas[p.equipeA].pts += p.pontosA;
-    estatisticas[p.equipeB].pts += p.pontosB;
+    // Soma os pontos
+    estatisticas[partida.equipeA].pontos += partida.pontosA;
+    estatisticas[partida.equipeB].pontos += partida.pontosB;
 
-    estatisticas[p.equipeA].j++;
-    estatisticas[p.equipeB].j++;
+    // Soma o número de jogos
+    estatisticas[partida.equipeA].jogos++;
+    estatisticas[partida.equipeB].jogos++;
 
-    if (p.pontosA > p.pontosB) {
-      estatisticas[p.equipeA].v++;
-      estatisticas[p.equipeB].d++;
-    } else if (p.pontosB > p.pontosA) {
-      estatisticas[p.equipeB].v++;
-      estatisticas[p.equipeA].d++;
+    // Contabiliza vitórias, empates e derrotas
+    if (partida.pontosA > partida.pontosB) {
+      estatisticas[partida.equipeA].vitorias++;
+      estatisticas[partida.equipeB].derrotas++;
+    } else if (partida.pontosB > partida.pontosA) {
+      estatisticas[partida.equipeB].vitorias++;
+      estatisticas[partida.equipeA].derrotas++;
     } else {
-      estatisticas[p.equipeA].e++;
-      estatisticas[p.equipeB].e++;
+      estatisticas[partida.equipeA].empates++;
+      estatisticas[partida.equipeB].empates++;
     }
   });
 
-  const ranking = Object.values(estatisticas).sort(
-    (a, b) => b.pts - a.pts || b.v - a.v || a.nome.localeCompare(b.nome)
-  );
+  // Transforma o objeto em array e ordena
+  const ranking = Object.values(estatisticas).sort((equipeA, equipeB) => {
+    // Ordena por pontos (maior primeiro)
+    if (equipeB.pontos !== equipeA.pontos) {
+      return equipeB.pontos - equipeA.pontos;
+    }
 
-  const corpo = document.getElementById("corpoRanking");
-  corpo.innerHTML = "";
+    // Se pontos forem iguais, ordena por vitórias (maior primeiro)
+    if (equipeB.vitorias !== equipeA.vitorias) {
+      return equipeB.vitorias - equipeA.vitorias;
+    }
 
-  ranking.forEach((eq, i) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-          <td>${i + 1}º</td>
-          <td>${eq.nome}</td>
-          <td>${eq.pts}</td>
-          <td>${eq.j}</td>
-          <td>${eq.v}</td>
-          <td>${eq.e}</td>
-          <td>${eq.d}</td>
-        `;
-    corpo.appendChild(tr);
+    // Se ainda for igual, prioriza quem chegou primeiro
+    return equipeA.ordemDeEntrada - equipeB.ordemDeEntrada;
+  });
+
+  // Exibe o ranking na tabela
+  const corpoTabela = document.getElementById("corpoRanking");
+  corpoTabela.innerHTML = "";
+
+  ranking.forEach((equipe, posicao) => {
+    const linha = document.createElement("tr");
+    linha.innerHTML = `
+      <td>${posicao + 1}º</td>
+      <td>${equipe.nome}</td>
+      <td>${equipe.pontos}</td>
+      <td>${equipe.jogos}</td>
+      <td>${equipe.vitorias}</td>
+      <td>${equipe.empates}</td>
+      <td>${equipe.derrotas}</td>
+    `;
+    corpoTabela.appendChild(linha);
   });
 }
 

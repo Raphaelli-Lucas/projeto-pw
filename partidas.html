@@ -1,69 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Agendamento de Partidas</title>
-  <link rel="stylesheet" href="assets/style/base.css"/>
-  <script src="assets/script/partidas.js" async></script>
-</head>
-<body>
-  <header>
-    <h1>🏆 Campeonato Escolar</h1>
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="equipes.html">Equipes</a>
-      <a href="alunos.html">Alunos</a>
-      <a href="partidas.html">Partidas</a>
-      <a href="ranking.html">Ranking</a>
-      <a href="membros.html">Membros da equipe</a>
-      <a href="resultado.html">Resultado</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agendamento de Partidas</title>
+    <link rel="stylesheet" href="assets/style/base.css" />
+    <script src="assets/script/partidas.js" async></script>
+    <link rel="icon" href="assets/img/logo.png" />
+  </head>
+  <body>
+    <header>
+      <h1>🏆 Campeonato Escolar</h1>
+      <nav>
+        <a href="index.html">Início</a>
+        <a href="equipes.html">Equipes</a>
+        <a href="alunos.html">Alunos</a>
+        <a href="partidas.html">Partidas</a>
+        <a href="ranking.html">Ranking</a>
+        <a href="membros.html">Membros da equipe</a>
+        <a href="resultado.html">Resultado</a>
+      </nav>
+    </header>
 
-  <main>
-    <h2>Agendar Nova Partida</h2>
-    <form id="formPartida">
-      <label for="dataPartida">Data:</label>
-      <input type="date" id="dataPartida" required />
+    <main>
+      <h2>Agendar Nova Partida</h2>
+      <form id="formPartida">
+        <label for="dataPartida">Data:</label>
+        <input type="date" id="dataPartida" required />
 
-      <label for="localPartida">Local:</label>
-      <input type="text" id="localPartida" required />
+        <label for="localPartida">Local:</label>
+        <input type="text" id="localPartida" required />
 
-      <label for="equipeA">Equipe A:</label>
-      <select id="equipeA" required>
-        <option value="">Selecione a equipe A</option>
-      </select>
+        <label for="equipeA">Equipe A:</label>
+        <select id="equipeA" required>
+          <option value="">Selecione a equipe A</option>
+        </select>
 
-      <label for="equipeB">Equipe B:</label>
-      <select id="equipeB" required>
-        <option value="">Selecione a equipe B</option>
-      </select>
+        <label for="equipeB">Equipe B:</label>
+        <select id="equipeB" required>
+          <option value="">Selecione a equipe B</option>
+        </select>
 
-      <button type="submit">Agendar Partida</button>
-    </form>
+        <button type="submit">Agendar Partida</button>
+      </form>
 
-    
-    <h2>Partidas Agendadas</h2>
-    <p id="contadorPartidas">🔢 Total de partidas agendadas: 0</p>
-    <table id="tabelaPartidas">
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Local</th>
-          <th>Equipe A</th>
-          <th>Equipe B</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Linhas geradas via JS -->
-      </tbody>
-    </table>
-  </main>
+      <h2>Partidas Agendadas</h2>
+      <p id="contadorPartidas">🔢 Total de partidas agendadas: 0</p>
+      <table id="tabelaPartidas">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Local</th>
+            <th>Equipe A</th>
+            <th>Equipe B</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Linhas geradas via JS -->
+        </tbody>
+      </table>
+    </main>
 
-  <footer>
-    <p>&copy; 2025 - Sistema Web Escolar</p>
-  </footer>
+    <footer>
+      <p>&copy; 2025 - Sistema Web Escolar</p>
+    </footer>
   </body>
-  </html>
+</html>

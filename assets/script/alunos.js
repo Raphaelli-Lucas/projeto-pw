@@ -56,7 +56,6 @@ form.addEventListener("submit", function (e) {
 
 //---
 
-
 let indiceAlunoEditando = null;
 function abrirModalEditarAluno(idAluno) {
   const alunos = JSON.parse(localStorage.getItem("alunos") || "[]");

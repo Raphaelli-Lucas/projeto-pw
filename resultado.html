@@ -6,111 +6,111 @@
     <title>Resultados das Partidas</title>
     <link rel="stylesheet" href="assets/style/base.css" />
     <script src="assets/script/resultado.js" async></script>
+    <link rel="icon" href="assets/img/logo.png" />
     <style>
       .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
 
-.modal.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
+      .modal.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
 
-.modal-content {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 320px;
-  max-width: 90%;
-  text-align: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
-  transform: translateY(0);
-}
+      .modal-content {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        width: 320px;
+        max-width: 90%;
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease;
+        transform: translateY(0);
+      }
 
-.modal.hidden .modal-content {
-  transform: translateY(-20px);
-}
+      .modal.hidden .modal-content {
+        transform: translateY(-20px);
+      }
 
-.modal-content label {
-  display: block;
-  margin: 1rem 0 0.5rem;
-  text-align: left;
-  font-weight: 600;
-  color: #333;
-}
+      .modal-content label {
+        display: block;
+        margin: 1rem 0 0.5rem;
+        text-align: left;
+        font-weight: 600;
+        color: #333;
+      }
 
-.modal-content input,
-.modal-content select,
-.modal-content textarea {
-  width: 100%;
-  padding: 0.6rem 0.8rem;
-  margin-top: 0.25rem;
-  border: 1.5px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
+      .modal-content input,
+      .modal-content select,
+      .modal-content textarea {
+        width: 100%;
+        padding: 0.6rem 0.8rem;
+        margin-top: 0.25rem;
+        border: 1.5px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
 
-.modal-content input:focus,
-.modal-content select:focus,
-.modal-content textarea:focus {
-  border-color: #00c77f;
-  outline: none;
-  box-shadow: 0 0 8px rgba(0, 199, 127, 0.4);
-}
+      .modal-content input:focus,
+      .modal-content select:focus,
+      .modal-content textarea:focus {
+        border-color: #00c77f;
+        outline: none;
+        box-shadow: 0 0 8px rgba(0, 199, 127, 0.4);
+      }
 
-.modal-buttons {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-}
+      .modal-buttons {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
 
-.modal-buttons button {
-  flex: 1;
-  padding: 0.6rem 1.4rem;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+      .modal-buttons button {
+        flex: 1;
+        padding: 0.6rem 1.4rem;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
 
-.modal-buttons button.primary {
-  background-color: #00c77f;
-  color: white;
-}
+      .modal-buttons button.primary {
+        background-color: #00c77f;
+        color: white;
+      }
 
-.modal-buttons button.primary:hover {
-  background-color: #007a4d;
-  box-shadow: 0 6px 18px rgba(0, 122, 77, 0.5);
-}
+      .modal-buttons button.primary:hover {
+        background-color: #007a4d;
+        box-shadow: 0 6px 18px rgba(0, 122, 77, 0.5);
+      }
 
-.modal-buttons button.secondary {
-  background-color: #ddd;
-  color: #555;
-}
+      .modal-buttons button.secondary {
+        background-color: #ddd;
+        color: #555;
+      }
 
-.modal-buttons button.secondary:hover {
-  background-color: #bbb;
-}
-
+      .modal-buttons button.secondary:hover {
+        background-color: #bbb;
+      }
     </style>
   </head>
   <body>
@@ -153,7 +153,7 @@
     <!-- Modal de Resultado -->
     <div id="modalResultado" class="modal hidden">
       <div class="modal-content">
-        <h3 style="color: black;">Registrar Resultado</h3>
+        <h3 style="color: black">Registrar Resultado</h3>
         <p id="infoPartida"></p>
 
         <label>
