@@ -1,62 +1,134 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Campeonato Escolar</title>
-  <link rel="stylesheet" href="assets/style/base.css">
-  <script src="assets/script/alunos.js" async></script>
-</head>
-<body>
-  <header>
-    <h1>🏆 Campeonato Escolar</h1>
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="equipes.html">Equipes</a>
-      <a href="alunos.html">Alunos</a>
-      <a href="partidas.html">Partidas</a>
-      <a href="ranking.html">Ranking</a>
-      <a href="resultado.html">Resultado</a>
-    </nav>
-  </header>
-   <main>
-    <h2>Cadastro de Alunos</h2>
-    <form id="formAluno">
-      <label for="nomeAluno">Nome do Aluno:</label>
-      <input type="text" id="nomeAluno" required />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campeonato Escolar</title>
+    <link rel="stylesheet" href="assets/style/base.css" />
+    <script src="assets/script/alunos.js" async></script>
+    <style>
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
 
-      <label for="idadeAluno">Idade:</label>
-      <input type="number" id="idadeAluno" required min="6" />
+      .modal.hidden {
+        display: none;
+      }
 
-      <label for="turmaAluno">Turma:</label>
-      <input type="text" id="turmaAluno" required />
+      .modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        width: 300px;
+        text-align: center;
+      }
 
-      <label for="equipeAluno">Equipe:</label>
-      <select id="equipeAluno" required>
-        <option value="">Selecione uma equipe</option>
-      </select>
+      .modal-content label {
+        display: block;
+        margin-top: 1rem;
+        text-align: left;
+      }
 
-      <button type="submit">Cadastrar Aluno</button>
-    </form>
+      .modal-buttons {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🏆 Campeonato Escolar</h1>
+      <nav>
+        <a href="index.html">Início</a>
+        <a href="equipes.html">Equipes</a>
+        <a href="alunos.html">Alunos</a>
+        <a href="partidas.html">Partidas</a>
+        <a href="ranking.html">Ranking</a>
+        <a href="membros.html">Membros da equipe</a>
+        <a href="resultado.html">Resultado</a>
+      </nav>
+    </header>
+    <main>
+      <h2>Cadastro de Alunos</h2>
+      <form id="formAluno">
+        <label for="nomeAluno">Nome do Aluno:</label>
+        <input type="text" id="nomeAluno" required />
 
-    <h2>Alunos Cadastrados</h2>
-    <table id="tabelaAlunos">
-      <thead>
-        <tr>
-          <th>Nome -</th>
-          <th>Idade -</th>
-          <th>Turma -</th>
-          <th>Equipe</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- !!!!a lista vai aparecer aqui!!!!!!-->
-      </tbody>
-    </table>
-  </main>
-  
-  <footer>
-    <p>&copy; 2025 - Sistema Web Escolar</p>
-  </footer>
-</body>
+        <label for="idadeAluno">Idade:</label>
+        <input type="number" id="idadeAluno" required min="6" />
+
+        <label for="turmaAluno">Turma:</label>
+        <input type="text" id="turmaAluno" required />
+
+        <label for="equipeAluno">Equipe:</label>
+        <select id="equipeAluno" required>
+          <option value="">Selecione uma equipe</option>
+        </select>
+
+        <button type="submit">Cadastrar Aluno</button>
+      </form>
+
+      <h2>Alunos Cadastrados</h2>
+      <table id="tabelaAlunos">
+        <thead>
+          <tr>
+            <th>Nome -</th>
+            <th>Idade -</th>
+            <th>Turma -</th>
+            <th>Equipe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- !!!!a lista vai aparecer aqui!!!!!!-->
+        </tbody>
+      </table>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 - Sistema Web Escolar</p>
+    </footer>
+    <!-- Modal de Edição de Aluno -->
+    <div id="modalEditarAluno" class="modal hidden">
+      <div class="modal-content">
+        <h3>Editar Aluno</h3>
+        <label>
+          Nome:
+          <input type="text" id="editNomeAluno" />
+        </label>
+        <label>
+          idade:
+          <input type="text" id="editIdadeAluno" />
+        </label>
+        <label>
+          turma:
+          <input type="text" id="editTurmaAluno" />
+        </label>
+        <label for="equipeAlunoModal">Equipe:</label>
+        <select id="editEquipeAluno" required>
+          <option value="">Selecione uma equipe</option>
+        </select>
+
+        <div class="modal-buttons">
+          <button onclick="salvarEdicaoAluno()">💾 Salvar</button>
+          <button
+            onclick="excluirAluno()"
+            style="background-color: #e74c3c; color: white"
+          >
+            🗑️ Excluir
+          </button>
+          <button onclick="fecharModalAluno()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

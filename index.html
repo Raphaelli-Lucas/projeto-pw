@@ -6,6 +6,8 @@
   <title>Campeonato Escolar</title>
   <link rel="stylesheet" href="assets/style/base.css">
   <link rel="stylesheet" href="assets/style/coisas.css">
+  <link rel="icon" href="assets/img/logo.png">
+
 </head>
 <body>
   <header>
@@ -16,31 +18,39 @@
       <a href="alunos.html">Alunos</a>
       <a href="partidas.html">Partidas</a>
       <a href="ranking.html">Ranking</a>
+      <a href="membros.html">Membros da equipe</a>
       <a href="resultado.html">Resultado</a>
     </nav>
   </header>
-  <main id="mainIndex">
-    <section id="sectionInd">
-      <h2>Bem-vindo ao Sistema de Campeonato Escolar</h2>
-      <p>Este sistema permite gerenciar campeonatos escolares com facilidade.</p>
-      <ul id="ulInd">
-        <li id="liInd">🏅 Cadastre e gerencie equipes e alunos participantes;</li>
-        <li id="liInd">📅 Agende partidas e registre resultados;</li>
-        <li id="liInd">📊 Acompanhe rankings por modalidade e desempenho das equipes.</li>
-      </ul>
-    </section>
+  
+    <section id="sectionInd" class="welcome-section">
+  <div class="welcome-text">
+    <h2>⚡ Bem-vindo ao <span>Campeonato Escolar</span></h2>
+    <p class="subtitle">
+      Gerencie campeonatos escolares com agilidade, praticidade e estilo!
+    </p>
+  </div>
 
-    <section id="sectionInd">
-      <h2>Comece agora</h2>
-      <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-        <a href="equipes.html"><button>➕ Cadastrar Equipes</button></a>
-        <a href="alunos.html"><button>👥 Cadastrar Alunos</button></a>
-        <a href="partidas.html"><button>🏟️ Agendar Partidas</button></a>
-        <a href="ranking.html"><button>📈 Ver Ranking</button></a>
-        <a href="resultado.html"><button>⚽ resultado</button></a>
-      </div>
-    </section>
-  </main>
+  <div class="features-cards">
+    <article class="feature-card">
+      <div class="icon">🏅</div>
+      <h3>Gerenciamento Fácil</h3>
+      <p>Cadastre e organize equipes e alunos participantes com rapidez.</p>
+    </article>
+    <article class="feature-card">
+      <div class="icon">📅</div>
+      <h3>Agenda Inteligente</h3>
+      <p>Agende partidas e registre resultados de forma intuitiva.</p>
+    </article>
+    <article class="feature-card">
+      <div class="icon">📊</div>
+      <h3>Rankings Dinâmicos</h3>
+      <p>Acompanhe o desempenho das equipes por modalidade em tempo real.</p>
+    </article>
+  </div>
+</section>
+
+  
   <footer>
     <p>&copy; 2025 - Sistema Web Escolar</p>
   </footer>

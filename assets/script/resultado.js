@@ -7,10 +7,9 @@ function carregarResultados() {
     const tr = document.createElement("tr");
 
     let resultado = "Não registrado";
-    if (typeof part.vencedor !== "undefined") {
-      resultado = part.vencedor === "empate"
-        ? "Empate"
-        : `Vitória de ${part.vencedor}`;
+    if (part.vencedor !== "undefined") {
+      resultado =
+        part.vencedor === "empate" ? "Empate" : `Vitória de ${part.vencedor}`;
     }
 
     tr.innerHTML = `
@@ -30,7 +29,7 @@ function carregarResultados() {
     corpo.appendChild(tr);
   });
 }
-carregarResultados()
+carregarResultados();
 //---                 |
 //funcoes dos modais \/
 let numeroDaPartida = null;
@@ -43,7 +42,9 @@ function abrirModalResultado(NmrModal) {
   partidaAtual = p;
 
   document.getElementById("modalResultado").classList.remove("hidden");
-  document.getElementById("infoPartida").textContent = `${p.equipeA} (${p.golsA}) x (${p.golsB}) ${p.equipeB}`;
+  document.getElementById(
+    "infoPartida"
+  ).innerText = ` equipe A - ${p.equipeA} x equipe B - ${p.equipeB}`;
 
   const select = document.getElementById("vencedorSelect");
   select.innerHTML = `
@@ -56,35 +57,35 @@ function abrirModalResultado(NmrModal) {
   document.getElementById("pontosA").value = "";
   document.getElementById("pontosB").value = "";
 }
-3
+
 //---                |
 // salvar resultado \/
+let ME = document.getElementById("MensagemErro");
 function salvarResultado() {
   const vencedor = document.getElementById("vencedorSelect").value;
   const pontosA = parseInt(document.getElementById("pontosA").value);
   const pontosB = parseInt(document.getElementById("pontosB").value);
   const partidas = JSON.parse(localStorage.getItem("partidas") || "[]");
   console.log(partidas);
-  let ME = document.getElementById("MensagemErro");
+
   if (vencedor === "" || isNaN(pontosA) || isNaN(pontosB)) {
     ME.style.color = "red";
     ME.style.fontWeight = "bold";
     ME.innerText = "Por favor, preencha todos os campos corretamente.";
     return;
-  } else if(vencedor===partidas[numeroDaPartida].equipeA && pontosA<=pontosB ||
-            vencedor === "empate" && pontosA!==pontosB ||
-            vencedor===partidas[numeroDaPartida].equipeB && pontosB<=pontosA
-  ){
+  } else if (
+    (vencedor === partidas[numeroDaPartida].equipeA && pontosA <= pontosB) ||
+    (vencedor === "empate" && pontosA !== pontosB) ||
+    (vencedor === partidas[numeroDaPartida].equipeB && pontosB <= pontosA)
+  ) {
     console.log("Erro de pontuação");
-    
+
     ME.style.color = "red";
     ME.style.fontWeight = "bold";
     ME.innerText = "A pontuação não confere com o vencedor selecionado!";
     return;
   }
 
-  
-  
   partidas[numeroDaPartida].vencedor = vencedor;
   partidas[numeroDaPartida].pontosA = pontosA;
   partidas[numeroDaPartida].pontosB = pontosB;
@@ -99,6 +100,7 @@ function fecharModal() {
   document.getElementById("modalResultado").classList.add("hidden");
   numeroDaPartida = null;
   partidaAtual = null;
+  ME.innerText = "";
 }
 //---
 carregarResultados();

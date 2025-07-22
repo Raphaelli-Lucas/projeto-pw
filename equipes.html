@@ -1,51 +1,182 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Campeonato Escolar</title>
-  <link rel="stylesheet" href="assets/style/base.css">
-  <script src="assets/script/cad.js" async></script>
-</head>
-<body>
-  <header>
-    <h1>🏆 Campeonato Escolar</h1>
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="equipes.html">Equipes</a>
-      <a href="alunos.html">Alunos</a>
-      <a href="partidas.html">Partidas</a>
-      <a href="ranking.html">Ranking</a>
-      <a href="resultado.html">Resultado</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campeonato Escolar</title>
+    <link rel="stylesheet" href="assets/style/base.css" />
+    <script src="assets/script/cad.js" async></script>
+    <style>
+      .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 320px;
+  max-width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.modal.hidden .modal-content {
+  transform: translateY(-20px);
+}
+
+/* Labels */
+.modal-content label {
+  display: block;
+  margin-top: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Inputs dentro do modal */
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  margin-top: 0.5rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1rem;
+}
+
+.modal-content input:focus,
+.modal-content select:focus,
+.modal-content textarea:focus {
+  border-color: #00c77f;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 199, 127, 0.4);
+}
+
+/* Botões do modal */
+.modal-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.modal-buttons button {
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Botão primário */
+.modal-buttons button.primary {
+  background-color: #00c77f;
+  color: white;
+}
+
+.modal-buttons button.primary:hover {
+  background-color: #007a4d;
+  box-shadow: 0 6px 18px rgba(0, 122, 77, 0.5);
+}
+
+/* Botão secundário */
+.modal-buttons button.secondary {
+  background-color: #ddd;
+  color: #555;
+}
+
+.modal-buttons button.secondary:hover {
+  background-color: #bbb;
+}
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🏆 Campeonato Escolar</h1>
+      <nav>
+        <a href="index.html">Início</a>
+        <a href="equipes.html">Equipes</a>
+        <a href="alunos.html">Alunos</a>
+        <a href="partidas.html">Partidas</a>
+        <a href="ranking.html">Ranking</a>
+        <a href="membros.html">Membros da equipe</a>
+        <a href="resultado.html">Resultado</a>
+      </nav>
+    </header>
     <main>
-    <h2>Cadastro de Equipes</h2>
-    <form id="formEquipe">
-      <label for="nomeEquipe">Nome da Equipe:</label>
-      <input type="text" id="nomeEquipe" required />
+      <h2>Cadastro de Equipes</h2>
+      <form id="formEquipe">
+        <label for="nomeEquipe">Nome da Equipe:</label>
+        <input type="text" id="nomeEquipe" required />
 
-      <label for="modalidade">Modalidade:</label>
-      <input type="text" id="modalidade" required />
+        <label for="modalidade">Modalidade:</label>
+        <input type="text" id="modalidade" required />
 
-      <button type="submit">Cadastrar Equipe</button>
-    </form>
+        <button type="submit">Cadastrar Equipe</button>
+      </form>
 
-    <h2>Equipes Cadastradas</h2>
-    <table id="tabelaEquipes">
-      <thead>
-        <tr>
-          <td>Nome:</td>
-          <td> Modalidade:</td>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- oq sair do js vem pra cá -->
-      </tbody>
-    </table>
-  </main>
-  <footer>
-    <p>&copy; 2025 - Sistema Web Escolar</p>
-  </footer>
-</body>
+      <h2>Equipes Cadastradas</h2>
+      <table id="tabelaEquipes">
+        <thead>
+          <tr>
+            <td>Nome:</td>
+            <td>Modalidade:</td>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- oq sair do js vem pra cá -->
+        </tbody>
+      </table>
+    </main>
+    <footer>
+      <p>&copy; 2025 - Sistema Web Escolar</p>
+    </footer>
+    <!-- Modal de Edição de Equipe -->
+    <div id="modalEditarEquipe" class="modal hidden">
+      <div class="modal-content">
+        <h3>Editar Equipe</h3>
+        <label>
+          Nome:
+          <input type="text" id="editNomeEquipe" />
+        </label>
+        <label>
+          Modalidade:
+          <input type="text" id="editModalidadeEquipe" />
+        </label>
+
+        <div class="modal-buttons">
+          <button onclick="salvarEdicaoEquipe()">💾 Salvar</button>
+          <button onclick="excluirEquipe()">🗑️ Excluir</button>
+          <button onclick="fecharModalEquipe()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
