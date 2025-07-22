@@ -8,113 +8,113 @@
     <script src="assets/script/cad.js" async></script>
     <style>
       .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+        color: black;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
 
-.modal.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
+      .modal.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
 
-.modal-content {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 320px;
-  max-width: 90%;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  transform: translateY(0);
-  transition: transform 0.3s ease;
-}
+      .modal-content {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        width: 320px;
+        max-width: 90%;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        transform: translateY(0);
+        transition: transform 0.3s ease;
+      }
 
-.modal.hidden .modal-content {
-  transform: translateY(-20px);
-}
+      .modal.hidden .modal-content {
+        transform: translateY(-20px);
+      }
 
-/* Labels */
-.modal-content label {
-  display: block;
-  margin-top: 1rem;
-  text-align: left;
-  font-weight: 600;
-  color: #333;
-}
+      /* Labels */
+      .modal-content label {
+        display: block;
+        margin-top: 1rem;
+        text-align: left;
+        font-weight: 600;
+        color: #333;
+      }
 
-/* Inputs dentro do modal */
-.modal-content input,
-.modal-content select,
-.modal-content textarea {
-  width: 100%;
-  padding: 0.6rem 0.8rem;
-  margin-top: 0.5rem;
-  border: 1.5px solid #ccc;
-  border-radius: 8px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  font-size: 1rem;
-}
+      /* Inputs dentro do modal */
+      .modal-content input,
+      .modal-content select,
+      .modal-content textarea {
+        width: 100%;
+        padding: 0.6rem 0.8rem;
+        margin-top: 0.5rem;
+        border: 1.5px solid #ccc;
+        border-radius: 8px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        font-size: 1rem;
+      }
 
-.modal-content input:focus,
-.modal-content select:focus,
-.modal-content textarea:focus {
-  border-color: #00c77f;
-  outline: none;
-  box-shadow: 0 0 8px rgba(0, 199, 127, 0.4);
-}
+      .modal-content input:focus,
+      .modal-content select:focus,
+      .modal-content textarea:focus {
+        border-color: #00c77f;
+        outline: none;
+        box-shadow: 0 0 8px rgba(0, 199, 127, 0.4);
+      }
 
-/* Botões do modal */
-.modal-buttons {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-}
+      /* Botões do modal */
+      .modal-buttons {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+      }
 
-.modal-buttons button {
-  padding: 0.6rem 1.4rem;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+      .modal-buttons button {
+        padding: 0.6rem 1.4rem;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
 
-/* Botão primário */
-.modal-buttons button.primary {
-  background-color: #00c77f;
-  color: white;
-}
+      /* Botão primário */
+      .modal-buttons button.primary {
+        background-color: #00c77f;
+        color: white;
+      }
 
-.modal-buttons button.primary:hover {
-  background-color: #007a4d;
-  box-shadow: 0 6px 18px rgba(0, 122, 77, 0.5);
-}
+      .modal-buttons button.primary:hover {
+        background-color: #007a4d;
+        box-shadow: 0 6px 18px rgba(0, 122, 77, 0.5);
+      }
 
-/* Botão secundário */
-.modal-buttons button.secondary {
-  background-color: #ddd;
-  color: #555;
-}
+      /* Botão secundário */
+      .modal-buttons button.secondary {
+        background-color: #ddd;
+        color: #555;
+      }
 
-.modal-buttons button.secondary:hover {
-  background-color: #bbb;
-}
-
+      .modal-buttons button.secondary:hover {
+        background-color: #bbb;
+      }
     </style>
   </head>
   <body>

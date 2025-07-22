@@ -32,19 +32,19 @@ function carregarResultados() {
 carregarResultados();
 //---                 |
 //funcoes dos modais \/
-let numeroDaPartida = null;
+let idPartida = null;
 let partidaAtual = null;
 
-function abrirModalResultado(NmrModal) {
+function abrirModalResultado(idPart) {
   const partidas = JSON.parse(localStorage.getItem("partidas") || "[]");
-  const p = partidas[NmrModal];
-  numeroDaPartida = NmrModal;
+  const p = partidas[idPart];
+  idPartida = idPart;
   partidaAtual = p;
 
   document.getElementById("modalResultado").classList.remove("hidden");
-  document.getElementById(
-    "infoPartida"
-  ).innerText = ` equipe A - ${p.equipeA} x equipe B - ${p.equipeB}`;
+  let infoPartida = document.getElementById("infoPartida");
+  infoPartida.innerText = ` equipe A - ${p.equipeA} x equipe B - ${p.equipeB}`;
+  infoPartida.style.color = "black";
 
   const select = document.getElementById("vencedorSelect");
   select.innerHTML = `
@@ -74,9 +74,9 @@ function salvarResultado() {
     ME.innerText = "Por favor, preencha todos os campos corretamente.";
     return;
   } else if (
-    (vencedor === partidas[numeroDaPartida].equipeA && pontosA <= pontosB) ||
+    (vencedor === partidas[idPartida].equipeA && pontosA <= pontosB) ||
     (vencedor === "empate" && pontosA !== pontosB) ||
-    (vencedor === partidas[numeroDaPartida].equipeB && pontosB <= pontosA)
+    (vencedor === partidas[idPartida].equipeB && pontosB <= pontosA)
   ) {
     console.log("Erro de pontuação");
 
@@ -86,9 +86,9 @@ function salvarResultado() {
     return;
   }
 
-  partidas[numeroDaPartida].vencedor = vencedor;
-  partidas[numeroDaPartida].pontosA = pontosA;
-  partidas[numeroDaPartida].pontosB = pontosB;
+  partidas[idPartida].vencedor = vencedor;
+  partidas[idPartida].pontosA = pontosA;
+  partidas[idPartida].pontosB = pontosB;
 
   localStorage.setItem("partidas", JSON.stringify(partidas));
   fecharModal();
@@ -98,7 +98,7 @@ function salvarResultado() {
 // fchar modal\/
 function fecharModal() {
   document.getElementById("modalResultado").classList.add("hidden");
-  numeroDaPartida = null;
+  idPartida = null;
   partidaAtual = null;
   ME.innerText = "";
 }

@@ -54,6 +54,9 @@ form.addEventListener("submit", function (e) {
   carregarAlunos();
 });
 
+//---
+
+
 let indiceAlunoEditando = null;
 function abrirModalEditarAluno(idAluno) {
   const alunos = JSON.parse(localStorage.getItem("alunos") || "[]");
@@ -68,7 +71,6 @@ function abrirModalEditarAluno(idAluno) {
   document.getElementById("modalEditarAluno").classList.remove("hidden");
 }
 
-
 function salvarEdicaoAluno() {
   const nome = document.getElementById("editNomeAluno").value.trim();
   const idade = parseInt(
@@ -81,10 +83,10 @@ function salvarEdicaoAluno() {
     alert("Preencha todos os campos!");
     return;
   }
-  
+
   const alunos = JSON.parse(localStorage.getItem("alunos") || "[]");
   alunos[indiceAlunoEditando] = { nome, idade, turma, equipe };
-  
+
   localStorage.setItem("alunos", JSON.stringify(alunos));
   fecharModalAluno();
   carregarAlunos(); // atualiza a lista
@@ -107,10 +109,10 @@ carregarEquipesNoSelectModal();
 //excluir aluno
 function excluirAluno() {
   if (!confirm("Tem certeza que deseja excluir este aluno?")) return;
-  
+
   const alunos = JSON.parse(localStorage.getItem("alunos") || "[]");
   alunos.splice(indiceAlunoEditando, 1);
-  
+
   localStorage.setItem("alunos", JSON.stringify(alunos));
   fecharModalAluno();
   carregarAlunos();
